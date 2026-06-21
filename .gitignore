@@ -1,0 +1,28 @@
+# Dependências
+node_modules/
+
+# Outputs de build (podem ser gerados com npm run build)
+dist/
+renderer/
+www/
+
+# Android — cache e outputs de build
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+
+# Logs
+*.log
+npm-debug.log*
+
+# Credenciais — NUNCA commitar
+*.keystore
+*.jks
+
+# IDE / ferramentas locais
+.idea/
+.claude/
+
+# Arquivos locais desnecessários
+Panda_fofo.jpg
