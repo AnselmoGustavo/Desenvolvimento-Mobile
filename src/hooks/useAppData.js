@@ -4,10 +4,12 @@ import { normalizeFornecedores, normalizeProdutos, syncProdutos } from "../norma
 import { useLocalStorage } from "./useLocalStorage";
 
 export function useAppData() {
-  const [pedidos, setPedidos] = useLocalStorage(STORAGE_KEYS.pedidos, []);
-  const [fornecedores, setFornecedores] = useLocalStorage(STORAGE_KEYS.fornecedores, []);
-  const [produtos, setProdutos] = useLocalStorage(STORAGE_KEYS.produtos, []);
-  const [historico, setHistorico] = useLocalStorage(STORAGE_KEYS.historico, []);
+  const [pedidos, setPedidos, r1] = useLocalStorage(STORAGE_KEYS.pedidos, []);
+  const [fornecedores, setFornecedores, r2] = useLocalStorage(STORAGE_KEYS.fornecedores, []);
+  const [produtos, setProdutos, r3] = useLocalStorage(STORAGE_KEYS.produtos, []);
+  const [historico, setHistorico, r4] = useLocalStorage(STORAGE_KEYS.historico, []);
+
+  const loading = !r1 || !r2 || !r3 || !r4;
 
   const normFornecedores = normalizeFornecedores(fornecedores);
   const normProdutos = normalizeProdutos(produtos);
@@ -172,6 +174,7 @@ export function useAppData() {
   }
 
   return {
+    loading,
     pedidos, fornecedores: normFornecedores, produtos: normProdutos, historico,
     getRelacoesProduto, getFornecedorNome, getPrecoEstimado, getUnidade, calcTotal,
     listarProdutosDisponiveis, salvarPedido, excluirPedido, mudarStatus,

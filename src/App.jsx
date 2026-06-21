@@ -15,7 +15,7 @@ const TABS = [
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState("pedidos");
-  const { exportarDados, importarDados } = useApp();
+  const { exportarDados, importarDados, loading } = useApp();
   const importRef = useRef(null);
   const [toast, setToast] = useState(null);
 
@@ -34,6 +34,17 @@ function AppContent() {
       showToast("Arquivo inválido.", false);
     }
     e.target.value = "";
+  }
+
+  if (loading) {
+    return (
+      <div style={{ minHeight: "100vh", background: T.stone50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{ textAlign: "center" }}>
+          <div style={{ fontSize: 40, marginBottom: 12 }}>🌿</div>
+          <div style={{ fontSize: 14, color: T.stone400 }}>Carregando...</div>
+        </div>
+      </div>
+    );
   }
 
   return (
